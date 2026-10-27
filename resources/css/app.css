@@ -1,9 +1,326 @@
-@import 'tailwindcss';
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+/* ===== PENGATURAN UTAMA ===== */
+:root {
+    --navy: #101f45;
+    --blue: #2563eb;
+    --blue-light: #60a5fa;
+    --background: #f3f7ff;
+    --heading: #172554;
+    --text: #475569;
+    --border: #dbe7f5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 15px;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text);
+    background:
+        radial-gradient(ellipse at top left, #e0edff, transparent 40%),
+        linear-gradient(135deg, #f7faff, #edf4ff);
+    min-height: 100vh;
+}
+
+/* ===== SEMUA JUDUL ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--heading);
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.3px;
+}
+
+h1 {
+    font-size: 2.2rem;
+}
+
+h2 {
+    font-size: 1.55rem;
+}
+
+h3 {
+    font-size: 1.15rem;
+}
+
+h4 {
+    font-size: 1.05rem;
+}
+
+h5, h6 {
+    font-size: 1rem;
+}
+
+p, li, label, small, span {
+    overflow-wrap: break-word;
+}
+
+p {
+    font-size: 0.92rem;
+    line-height: 1.8;
+}
+
+.text-secondary {
+    color: #64748b !important;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    background: linear-gradient(110deg, #101f45, #174ea6) !important;
+    padding: 13px 0;
+    box-shadow: 0 6px 22px rgba(16, 31, 69, 0.14);
+}
+
+.navbar-brand {
+    color: #fff !important;
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.navbar .nav-link {
+    color: #e4efff !important;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 8px 14px !important;
+    border-radius: 9px;
+    transition: 0.25s;
+}
+
+.navbar .nav-link:hover {
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== AREA BERANDA ===== */
+.hero-section {
+    padding: 40px 30px;
+    border-radius: 24px;
+    background: linear-gradient(125deg, #fff, #e5efff);
+    border: 1px solid #dce8fa;
+    box-shadow: 0 15px 35px rgba(37, 99, 235, 0.07);
+}
+
+.hero-section h1 {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    line-height: 1.35;
+    letter-spacing: -0.7px;
+    font-weight: 800;
+    color: #142752;
+    margin: 1px 0;
+}
+
+.hero-section .lead {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #536782;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 7px 13px;
+    border-radius: 25px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+/* ===== GAMBAR UTAMA ===== */
+.hero-image {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    max-height: 280px;
+    object-fit: contain;
+    padding: 10px;
+    margin: auto;
+    border-radius: 22px;
+    background: #fff;
+    border: 1px solid #e0eaff;
+    box-shadow: 0 15px 30px rgba(37, 99, 235, 0.13);
+    transition: transform 0.3s ease;
+}
+
+.hero-image:hover {
+    transform: none;
+}
+
+/* ===== TOMBOL ===== */
+.btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 10px 19px;
+    border-radius: 10px;
+    transition: 0.25s;
+}
+
+.btn-primary,
+.btn-success {
+    color: #fff !important;
+    background: linear-gradient(110deg, #1d4ed8, #3b82f6) !important;
+    border: none !important;
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.2);
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+    background: #1e40af !important;
+    transform: translateY(-2px);
+}
+
+/* ===== KARTU KURSUS ===== */
+.card {
+    height: 100%;
+    border: 1px solid #e2eaf6;
+    border-radius: 17px;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 7px 20px rgba(30, 64, 175, 0.05);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 28px rgba(37, 99, 235, 0.12);
+}
+
+.card-body {
+    padding: 22px;
+}
+
+.card small {
+    color: #1d4ed8 !important;
+    background: #eff6ff;
+    border: 1px solid #dbeafe;
+    border-radius: 7px;
+    padding: 5px 9px;
+    font-size: 0.73rem;
+    font-weight: 700;
+}
+
+.card h3 {
+    font-size: 1.02rem;
+    font-weight: 700;
+    margin-top: 13px !important;
+}
+
+.card p {
+    color: #64748b;
+    font-size: 0.86rem;
+    line-height: 1.7;
+}
+
+/* ===== FORMULIR ===== */
+.form-label {
+    color: #1e3a8a;
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.form-control,
+.form-select {
+    padding: 11px 13px;
+    border: 1px solid #d5e2f3;
+    border-radius: 10px;
+    background: #fff;
+    color: #334155;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+}
+
+.form-control::placeholder {
+    color: #94a3b8;
+}
+
+/* ===== PESAN NOTIFIKASI ===== */
+.alert {
+    border: none;
+    border-radius: 11px;
+    padding: 13px 16px;
+    font-size: 0.88rem;
+}
+
+.alert-success {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.alert-secondary {
+    background: #eff6ff;
+    color: #475569;
+}
+
+.alert-danger {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* ===== JARAK ANTARBAGIAN ===== */
+section {
+    margin-bottom: 25px;
+}
+
+.container {
+    max-width: 1140px;
+}
+
+/* ===== TAMPILAN TABLET ===== */
+@media (max-width: 991px) {
+    .hero-section {
+        padding: 30px 24px;
+    }
+
+    .hero-image {
+        max-width: 230px;
+        max-height: 220px;
+    }
+}
+
+/* ===== TAMPILAN HP ===== */
+@media (max-width: 576px) {
+    html {
+        font-size: 13px;
+    }
+
+    .hero-section {
+        padding: 25px 18px;
+        border-radius: 18px;
+    }
+
+    .hero-section h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-image {
+        max-width: 190px;
+        max-height: 180px;
+    }
+
+    .card-body {
+        padding: 18px;
+    }
+
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
 }
