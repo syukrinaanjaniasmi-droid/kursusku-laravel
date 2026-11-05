@@ -1,16 +1,26 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+/* =========================================================
+   KursusKu - Tema Biru Modern
+   ========================================================= */
+
 /* ===== PENGATURAN UTAMA ===== */
 :root {
-    --navy: #101f45;
+    --navy: #0b1530;
+    --navy-2: #101f45;
     --blue: #2563eb;
+    --blue-dark: #1d4ed8;
     --blue-light: #60a5fa;
-    --background: #f3f7ff;
-    --heading: #172554;
+    --cyan: #22d3ee;
+    --blue-soft: #eff6ff;
+    --heading: #0f1f4d;
     --text: #475569;
     --border: #dbe7f5;
+    --grad: linear-gradient(110deg, #1d4ed8, #3b82f6 55%, #22d3ee);
+    --shadow-sm: 0 6px 18px rgba(30, 64, 175, 0.07);
+    --shadow-md: 0 14px 34px rgba(37, 99, 235, 0.13);
+    --shadow-lg: 0 24px 50px rgba(37, 99, 235, 0.2);
 }
 
 * {
@@ -19,6 +29,7 @@
 
 html {
     font-size: 15px;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -27,40 +38,47 @@ body {
     font-size: 0.95rem;
     line-height: 1.7;
     color: var(--text);
-    background:
-        radial-gradient(ellipse at top left, #e0edff, transparent 40%),
-        linear-gradient(135deg, #f7faff, #edf4ff);
     min-height: 100vh;
+    background:
+        radial-gradient(900px 500px at 0% 0%, #dbeafe, transparent 60%),
+        radial-gradient(800px 500px at 100% 100%, #cffafe, transparent 55%),
+        linear-gradient(135deg, #f8fbff, #eef4ff);
+    background-attachment: fixed;
 }
 
-/* ===== SEMUA JUDUL ===== */
+::selection {
+    background: #bfdbfe;
+    color: #0b1530;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #eaf1ff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#3b82f6, #1d4ed8);
+    border-radius: 10px;
+}
+
+/* ===== JUDUL ===== */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', sans-serif;
     color: var(--heading);
     font-weight: 700;
-    line-height: 1.4;
+    line-height: 1.35;
     letter-spacing: -0.3px;
 }
 
-h1 {
-    font-size: 2.2rem;
-}
-
-h2 {
-    font-size: 1.55rem;
-}
-
-h3 {
-    font-size: 1.15rem;
-}
-
-h4 {
-    font-size: 1.05rem;
-}
-
-h5, h6 {
-    font-size: 1rem;
-}
+h1 { font-size: 2.2rem; }
+h2 { font-size: 1.55rem; }
+h3 { font-size: 1.15rem; }
+h4 { font-size: 1.05rem; }
+h5, h6 { font-size: 1rem; }
 
 p, li, label, small, span {
     overflow-wrap: break-word;
@@ -75,153 +93,403 @@ p {
     color: #64748b !important;
 }
 
+/* ===== ANIMASI ===== */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-14px); }
+}
+
+@keyframes blob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(-30px, 24px) scale(1.12); }
+}
+
+@keyframes shimmer {
+    from { background-position: 0% 50%; }
+    to   { background-position: 200% 50%; }
+}
+
+@keyframes pulseDot {
+    0%   { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7); }
+    70%  { box-shadow: 0 0 0 9px rgba(34, 211, 238, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+}
+
+main,
+.hero-section,
+.course-section,
+.card {
+    animation: fadeUp 0.7s ease both;
+}
+
+.course-section {
+    animation-delay: 0.15s;
+}
+
 /* ===== NAVBAR ===== */
 .navbar {
-    background: linear-gradient(110deg, #101f45, #174ea6) !important;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
     padding: 13px 0;
-    box-shadow: 0 6px 22px rgba(16, 31, 69, 0.14);
+    background: linear-gradient(110deg, rgba(11, 21, 48, 0.96), rgba(23, 78, 166, 0.96)) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 28px rgba(11, 21, 48, 0.28);
 }
 
 .navbar-brand {
-    color: #fff !important;
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     font-weight: 800;
+    letter-spacing: 0.4px;
+    background: linear-gradient(90deg, #ffffff, #93c5fd 60%, #67e8f9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .navbar .nav-link {
-    color: #e4efff !important;
+    position: relative;
+    color: #dbeafe !important;
     font-size: 0.88rem;
     font-weight: 500;
-    padding: 8px 14px !important;
-    border-radius: 9px;
-    transition: 0.25s;
+    padding: 8px 17px !important;
+    margin: 0 3px;
+    border-radius: 999px;
+    transition: all 0.25s ease;
 }
 
 .navbar .nav-link:hover {
     color: #fff !important;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.14);
+    transform: translateY(-1px);
 }
 
-/* ===== AREA BERANDA ===== */
+.navbar .nav-link.active {
+    color: #fff !important;
+    background: var(--grad);
+    box-shadow: 0 6px 16px rgba(34, 211, 238, 0.35);
+}
+
+/* ===== HERO BERANDA ===== */
 .hero-section {
-    padding: 40px 30px;
-    border-radius: 24px;
-    background: linear-gradient(125deg, #fff, #e5efff);
-    border: 1px solid #dce8fa;
-    box-shadow: 0 15px 35px rgba(37, 99, 235, 0.07);
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+    padding: 56px 42px;
+    border-radius: 28px;
+    background:
+        radial-gradient(500px 280px at 90% 10%, rgba(96, 165, 250, 0.28), transparent 65%),
+        linear-gradient(125deg, #ffffff, #e6f0ff 60%, #dff7ff);
+    border: 1px solid #d7e6fb;
+    box-shadow: var(--shadow-md);
 }
 
+/* lingkaran melayang */
+.hero-section::before,
+.hero-section::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(2px);
+}
+
+.hero-section::before {
+    width: 300px;
+    height: 300px;
+    right: -90px;
+    top: -120px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.35), transparent 70%);
+    animation: blob 9s ease-in-out infinite;
+}
+
+.hero-section::after {
+    width: 220px;
+    height: 220px;
+    left: -70px;
+    bottom: -90px;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.3), transparent 70%);
+    animation: blob 11s ease-in-out infinite reverse;
+}
+
+.hero-section > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* judul bergradasi */
 .hero-section h1 {
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
-    line-height: 1.35;
-    letter-spacing: -0.7px;
+    font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+    line-height: 1.3;
+    letter-spacing: -0.8px;
     font-weight: 800;
-    color: #142752;
-    margin: 1px 0;
+    margin: 6px 0;
+    background: linear-gradient(100deg, #0f1f4d 10%, #1d4ed8 55%, #0891b2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero-section .lead {
-    font-size: 0.95rem;
-    line-height: 1.8;
-    color: #536782;
+    font-size: 0.97rem;
+    line-height: 1.85;
+    color: #51647f;
 }
 
+/* lencana dengan titik berdenyut */
 .hero-badge {
-    display: inline-block;
-    padding: 7px 13px;
-    border-radius: 25px;
-    background: #dbeafe;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 15px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.85);
     color: #1d4ed8;
     border: 1px solid #bfdbfe;
     font-size: 0.78rem;
     font-weight: 600;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
 }
 
-/* ===== GAMBAR UTAMA ===== */
+.hero-badge::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--cyan);
+    animation: pulseDot 1.8s infinite;
+}
+
+/* gambar hero */
 .hero-image {
     display: block;
     width: 100%;
-    max-width: 300px;
-    max-height: 280px;
+    max-width: 310px;
+    max-height: 290px;
     object-fit: contain;
     padding: 10px;
     margin: auto;
-    border-radius: 22px;
+    border-radius: 24px;
     background: #fff;
     border: 1px solid #e0eaff;
-    box-shadow: 0 15px 30px rgba(37, 99, 235, 0.13);
-    transition: transform 0.3s ease;
+    box-shadow: var(--shadow-lg);
+    animation: floaty 5s ease-in-out infinite;
 }
 
-.hero-image:hover {
-    transform: none;
+/* ===== JUDUL BAGIAN ===== */
+.course-section h2 {
+    position: relative;
+    padding-left: 16px;
+}
+
+.course-section h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    bottom: 5px;
+    width: 6px;
+    border-radius: 6px;
+    background: linear-gradient(var(--blue), var(--cyan));
 }
 
 /* ===== TOMBOL ===== */
 .btn {
+    position: relative;
+    overflow: hidden;
     font-family: 'Poppins', sans-serif;
     font-size: 0.88rem;
     font-weight: 600;
-    padding: 10px 19px;
+    padding: 11px 22px;
+    border-radius: 12px;
+    transition: all 0.25s ease;
+}
+
+.btn-sm {
+    padding: 7px 15px;
+    font-size: 0.8rem;
     border-radius: 10px;
-    transition: 0.25s;
 }
 
 .btn-primary,
 .btn-success {
     color: #fff !important;
-    background: linear-gradient(110deg, #1d4ed8, #3b82f6) !important;
     border: none !important;
-    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.2);
+    background: linear-gradient(110deg, #1d4ed8, #3b82f6, #22d3ee, #3b82f6, #1d4ed8) !important;
+    background-size: 250% 100% !important;
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.3);
 }
 
 .btn-primary:hover,
 .btn-success:hover {
-    background: #1e40af !important;
-    transform: translateY(-2px);
+    animation: shimmer 2.2s linear infinite;
+    transform: translateY(-3px);
+    box-shadow: 0 14px 26px rgba(37, 99, 235, 0.4);
 }
 
-/* ===== KARTU KURSUS ===== */
-.card {
-    height: 100%;
-    border: 1px solid #e2eaf6;
-    border-radius: 17px;
+.btn-primary:active {
+    transform: translateY(-1px);
+}
+
+.btn-outline-primary {
+    color: var(--blue-dark);
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid var(--blue);
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background: var(--blue);
+    border-color: var(--blue);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
+}
+
+.btn-outline-secondary {
+    color: #475569;
+    border: 2px solid #cbd5e1;
     background: #fff;
-    overflow: hidden;
-    box-shadow: 0 7px 20px rgba(30, 64, 175, 0.05);
-    transition: transform 0.25s, box-shadow 0.25s;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 14px 28px rgba(37, 99, 235, 0.12);
+.btn-outline-secondary:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+    border-color: #cbd5e1;
+}
+
+/* ===== KARTU UMUM (form, tabel) ===== */
+.card {
+    border: 1px solid #e0eaf8;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.92);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
 }
 
 .card-body {
-    padding: 22px;
+    padding: 24px;
 }
 
-.card small {
+/* ===== KARTU KURSUS DI BERANDA ===== */
+.course-card {
+    position: relative;
+    height: 100%;
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* garis gradasi di atas, melebar saat hover */
+.course-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 4px;
+    width: 38%;
+    background: var(--grad);
+    border-radius: 0 6px 6px 0;
+    transition: width 0.4s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.course-card:hover::before {
+    width: 100%;
+}
+
+.course-code {
+    display: inline-block;
     color: #1d4ed8 !important;
-    background: #eff6ff;
-    border: 1px solid #dbeafe;
-    border-radius: 7px;
-    padding: 5px 9px;
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 5px 11px;
     font-size: 0.73rem;
     font-weight: 700;
+    letter-spacing: 0.6px;
 }
 
-.card h3 {
-    font-size: 1.02rem;
+.course-card h3 {
+    font-size: 1.05rem;
     font-weight: 700;
-    margin-top: 13px !important;
+    margin-top: 14px !important;
 }
 
-.card p {
+.course-card p {
     color: #64748b;
     font-size: 0.86rem;
     line-height: 1.7;
 }
+
+/* ===== TABEL DAFTAR KURSUS ===== */
+.table {
+    margin-bottom: 0;
+    vertical-align: middle;
+    font-size: 0.88rem;
+}
+
+.table thead th {
+    background: linear-gradient(110deg, #0b1530, #174ea6);
+    color: #fff;
+    font-size: 0.76rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border: none;
+    padding: 15px 16px;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    padding: 14px 16px;
+    border-color: #e8eff9;
+    color: #334155;
+}
+
+.table tbody td:first-child {
+    font-weight: 700;
+    color: #1d4ed8;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-accent-bg: #f6f9ff;
+}
+
+.table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.table tbody tr:hover > * {
+    --bs-table-accent-bg: #e6f0ff;
+}
+
+.table tbody tr:hover td:first-child {
+    box-shadow: inset 4px 0 0 var(--blue);
+}
+
+/* lencana status (opsional, lihat catatan di bawah) */
+.badge-status {
+    display: inline-block;
+    padding: 4px 13px;
+    border-radius: 999px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.badge-status.open   { background: #dcfce7; color: #166534; }
+.badge-status.draft  { background: #fef3c7; color: #92400e; }
+.badge-status.closed { background: #fee2e2; color: #991b1b; }
 
 /* ===== FORMULIR ===== */
 .form-label {
@@ -232,35 +500,50 @@ p {
 
 .form-control,
 .form-select {
-    padding: 11px 13px;
-    border: 1px solid #d5e2f3;
-    border-radius: 10px;
+    padding: 12px 14px;
+    border: 2px solid #dbe6f5;
+    border-radius: 12px;
     background: #fff;
     color: #334155;
     font-family: 'Poppins', sans-serif;
     font-size: 0.9rem;
+    transition: all 0.25s ease;
+}
+
+.form-control:hover,
+.form-select:hover {
+    border-color: #bcd2f0;
 }
 
 .form-control:focus,
 .form-select:focus {
-    border-color: #60a5fa;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+    border-color: #3b82f6;
+    background: #fbfdff;
+    box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.15);
+    transform: translateY(-1px);
 }
 
 .form-control::placeholder {
     color: #94a3b8;
 }
 
+.text-danger.small {
+    margin-top: 5px;
+    font-weight: 500;
+}
+
 /* ===== PESAN NOTIFIKASI ===== */
 .alert {
     border: none;
-    border-radius: 11px;
-    padding: 13px 16px;
+    border-radius: 14px;
+    padding: 14px 18px;
     font-size: 0.88rem;
+    box-shadow: var(--shadow-sm);
 }
 
 .alert-success {
-    background: #dbeafe;
+    background: linear-gradient(110deg, #dbeafe, #e0f7ff);
+    border-left: 5px solid #2563eb;
     color: #1e40af;
 }
 
@@ -271,39 +554,40 @@ p {
 
 .alert-danger {
     background: #fee2e2;
+    border-left: 5px solid #ef4444;
     color: #991b1b;
 }
 
-/* ===== JARAK ANTARBAGIAN ===== */
+/* ===== JARAK ===== */
 section {
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 
 .container {
     max-width: 1140px;
 }
 
-/* ===== TAMPILAN TABLET ===== */
+/* ===== TABLET ===== */
 @media (max-width: 991px) {
     .hero-section {
-        padding: 30px 24px;
+        padding: 38px 26px;
     }
 
     .hero-image {
-        max-width: 230px;
-        max-height: 220px;
+        max-width: 240px;
+        max-height: 230px;
     }
 }
 
-/* ===== TAMPILAN HP ===== */
+/* ===== HP ===== */
 @media (max-width: 576px) {
     html {
         font-size: 13px;
     }
 
     .hero-section {
-        padding: 25px 18px;
-        border-radius: 18px;
+        padding: 28px 18px;
+        border-radius: 20px;
     }
 
     .hero-section h1 {
@@ -322,5 +606,15 @@ section {
     .container {
         padding-left: 16px;
         padding-right: 16px;
+    }
+}
+
+/* hormati pengguna yang mematikan animasi */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
     }
 }
