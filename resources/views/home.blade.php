@@ -1,8 +1,5 @@
-
 @extends('layouts.app')
-
 @section('title', 'Beranda - KursusKu')
-
 @section('content')
 
 {{-- BAGIAN UTAMA --}}
@@ -23,10 +20,16 @@
                 keterampilan pemrograman web secara bertahap.
             </p>
 
-            <a href="{{ route('enrollments.create') }}"
-               class="btn btn-primary mt-2">
-                Daftar Kursus
-            </a>
+            <div class="d-flex flex-wrap gap-2 mt-2">
+                <a href="{{ route('enrollments.create') }}"
+                   class="btn btn-primary">
+                    Daftar Kursus
+                </a>
+                <a href="{{ route('courses.index') }}"
+                   class="btn btn-outline-primary">
+                    Lihat Daftar Kursus
+                </a>
+            </div>
         </div>
 
         <div class="col-lg-4 hero-image-container">
@@ -41,7 +44,13 @@
 
 {{-- DAFTAR KURSUS --}}
 <section class="course-section py-4">
-    <h2 class="fw-bold mb-4">Program Belajar Unggulan</h2>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">Program Belajar Unggulan</h2>
+        <a href="{{ route('courses.index') }}"
+           class="btn btn-sm btn-outline-primary">
+            Kelola Kursus
+        </a>
+    </div>
 
     <div class="row g-4">
         @foreach ($featured as $course)

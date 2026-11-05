@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
@@ -17,13 +16,21 @@
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">
+                    <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
+                       href="{{ route('home') }}">
                         Beranda
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link"
+                    <a class="nav-link {{ request()->routeIs('courses.*') ? 'active' : '' }}"
+                       href="{{ route('courses.index') }}">
+                        Kursus
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('enrollments.*') ? 'active' : '' }}"
                        href="{{ route('enrollments.create') }}">
                         Pendaftaran
                     </a>

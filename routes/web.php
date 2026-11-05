@@ -1,9 +1,11 @@
-
 <?php
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CourseController;
+
+Route::resource('courses', CourseController::class);
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
