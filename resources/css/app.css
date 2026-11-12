@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
-/* =========================================================
-   KursusKu - Tema Biru Modern
-   ========================================================= */
-
-/* ===== PENGATURAN UTAMA ===== */
 :root {
     --navy: #0b1530;
     --navy-2: #101f45;
@@ -616,5 +611,211 @@ section {
     *::after {
         animation: none !important;
         transition: none !important;
+    }
+}
+
+/* ===================================
+   EDIT KURSUS - COMPACT MODERN
+=================================== */
+
+.course-edit-page {
+    min-height: 100vh;
+    padding: 30px 15px;
+    background: linear-gradient(135deg, #edf4ff, #e9faff);
+}
+
+.course-edit-container {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* HEADER */
+
+.course-edit-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    gap: 12px;
+}
+
+.course-edit-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin: 0 0 5px;
+}
+
+.course-edit-subtitle {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+}
+
+.course-edit-back {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2563eb;
+    background: white;
+    padding: 9px 15px;
+    border-radius: 10px;
+    border: 1px solid #dbeafe;
+    transition: 0.2s;
+}
+
+.course-edit-back:hover {
+    background: #eff6ff;
+    color: #1d4ed8;
+}
+
+/* CARD */
+
+.course-edit-card {
+    background: white;
+    padding: 24px;
+    border-radius: 17px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 8px 25px rgba(30, 64, 175, 0.08);
+}
+
+/* INPUT */
+
+.edit-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 14px;
+}
+
+.edit-field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e40af;
+    margin-bottom: 6px;
+}
+
+.edit-field input,
+.edit-field textarea,
+.edit-field select {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 13px;
+    color: #334155;
+    border: 1px solid #d6e3f5;
+    border-radius: 9px;
+    outline: none;
+    background: #fff;
+    transition: 0.2s;
+}
+
+.edit-field input,
+.edit-field select {
+    height: 42px;
+}
+
+.edit-field textarea {
+    min-height: 75px;
+    resize: vertical;
+}
+
+.edit-field input:focus,
+.edit-field textarea:focus,
+.edit-field select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.10);
+}
+
+.edit-field input::placeholder,
+.edit-field textarea::placeholder {
+    color: #94a3b8;
+}
+
+/* 2 KOLOM */
+
+.edit-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* VALIDASI */
+
+.edit-field .is-invalid {
+    border-color: #dc3545;
+}
+
+.edit-error {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* BUTTON */
+
+.edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 9px;
+    margin-top: 8px;
+    padding-top: 15px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.edit-btn-cancel,
+.edit-btn-save {
+    text-decoration: none;
+    border: none;
+    border-radius: 9px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.edit-btn-cancel {
+    color: #475569;
+    background: #f1f5f9;
+}
+
+.edit-btn-cancel:hover {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.edit-btn-save {
+    color: white;
+    background: linear-gradient(135deg, #2563eb, #38bdf8);
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.18);
+}
+
+.edit-btn-save:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.25);
+}
+
+/* RESPONSIVE HP */
+
+@media (max-width: 576px) {
+    .course-edit-page {
+        padding: 22px 12px;
+    }
+
+    .course-edit-card {
+        padding: 18px;
+    }
+
+    .course-edit-title {
+        font-size: 23px;
+    }
+
+    .edit-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .edit-actions {
+        flex-wrap: wrap;
     }
 }
